@@ -36,6 +36,7 @@ def visualize_data(df):
     plt.title('Répartition de la Gravité')
     
     plt.tight_layout()
+    plt.savefig('data_visualization.png')
     plt.show()
 
 visualize_data(df)
@@ -62,15 +63,15 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 from sklearn.metrics import confusion_matrix, classification_report
-plt.savefig('data_visualization.png')
+
 
 def plot_confusion(model, name):
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
     sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt='d')
     plt.title(f'Matrice de Confusion : {name}')
+    plt.savefig('confusion_matrix.png')
     plt.show()
 
 # Exemple pour KNN
 plot_confusion(KNeighborsClassifier(), "KNN")
-plt.savefig('confusion_matrix.png')
